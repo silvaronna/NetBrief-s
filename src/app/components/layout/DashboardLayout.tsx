@@ -1,7 +1,6 @@
 import { useState, useRef, useEffect } from "react";
 import { Outlet, useNavigate, useLocation } from "react-router-dom";
 import { Menu, Activity, AlertTriangle, Zap, Settings, User, Info } from "lucide-react";
-import mtmLogo from "../../../assets/mtm-logo.png"; 
 
 export function DashboardLayout() {
   const navigate = useNavigate();
@@ -35,7 +34,7 @@ export function DashboardLayout() {
           
           {/* 2. Gunakan tag <img> untuk me-render logo */}
           <img 
-            src={mtmLogo} 
+            src="/mtm-logo.png"
             alt="MTM Logo" 
             className="w-10 h-10 object-contain hover:scale-105 transition-transform cursor-pointer" 
             onClick={() => navigate('/')} 

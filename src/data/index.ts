@@ -93,10 +93,11 @@ export const TRAFFIC_TOP_NEIGHBOR_AS = {
 };
 
 export const TRAFFIC_AGGREGATORS = [
-  { id: 'total', label: 'TOTAL TRAFFIC IN', icon: 'Activity', value: '4.5 TB' },
-  { id: 'iix', label: 'IIX TRAFFIC IN', icon: 'Network', value: '1.2 TB' },
-  { id: 'oixp', label: 'OIXP TRAFFIC IN', icon: 'Database', value: '850 GB' },
-  { id: 'jktix', label: 'JKT IX TRAFFIC IN', icon: 'Globe', value: '2.1 TB' },
+  { id: 'telkomnet', label: 'TELKOMNET (AS7713)', image: '/icons/telkom-logo.png', value: '4.5 TB' },
+  { id: 'apjii', label: 'IIX (AS7597)', image: '/icons/apjii-logo.png', value: '1.2 TB' },
+  { id: 'dciix', label: 'DCI-IX (AS138428)', image: '/icons/dci_ix-logo.png', value: '850 GB' },
+  { id: 'jktix', label: 'JKT IX (AS137295)', image: '/icons/jkt_ix-logo.png', value: '2.1 TB' },
+  { id: 'oixp', label: 'Open-IXP (AS7717)', image: '/icons/openixp-logo.png', value: '1.0 TB' },
 ];
 
 export const TRAFFIC_3A_LINKS = {
