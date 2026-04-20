@@ -102,18 +102,21 @@ export const TRAFFIC_AGGREGATORS = [
 
 export const TRAFFIC_3A_LINKS = {
   columns: [
-    { key: 'router', label: 'Router Name' },
-    { key: 'interface', label: 'Interface' },
+    { key: 'link', label: 'Link Name' },
+    { key: 'interface', label: 'Interface Name' },
     { key: 'description', label: 'Interface Description' },
-    { key: 'util_in', label: 'Utilization In (%)' },
-    { key: 'util_out', label: 'Utilization Out (%)' },
+    { key: 'util_in_pct', label: 'Utilization In (%)' },
+    { key: 'util_in_rate', label: 'Utilization In (Rate)' },
+    { key: 'util_out_pct', label: 'Utilization Out (%)' },
+    { key: 'util_out_rate', label: 'Utilization Out (Rate)' },
+    { key: 'percentage', label: 'Trend' }
   ],
   dataSource: [
-    { id: '1', router: 'Core-Router-A', interface: 'xe-0/1/2', description: 'Tokyo Peering Link', util_in: 45.2, util_out: 38.7, trend: 'up', percentage: '+5.3%', link: 'Link-A1', value: '1.2 TB', numericValue: 1200, min: '800 GB', max: '1.5 TB', rate: '1.2 TB' },
-    { id: '2', router: 'Edge-Router-B', interface: 'ge-1/0/1', description: 'Singapore IXP Link', util_in: 72.5, util_out: 65.1, trend: 'up', percentage: '+8.2%', link: 'Link-B2', value: '850 GB', numericValue: 850, min: '400 GB', max: '1.0 TB', rate: '850 GB' },
-    { id: '3', router: 'Peering-Router-C', interface: 'bundle-ether1', description: 'India Direct Link', util_in: 32.8, util_out: 28.3, trend: 'down', percentage: '-3.1%', link: 'Link-C3', value: '620 GB', numericValue: 620, min: '500 GB', max: '700 GB', rate: '620 GB' },
-    { id: '4', router: 'Core-Router-D', interface: 'xe-2/0/0', description: 'Vietnam Transit Link', util_in: 58.4, util_out: 52.1, trend: 'up', percentage: '+2.7%', link: 'Link-D4', value: '412 GB', numericValue: 412, min: '250 GB', max: '500 GB', rate: '412 GB' },
-    { id: '5', router: 'Edge-Router-E', interface: 'ge-0/0/3', description: 'Malaysia Exchange Link', util_in: 21.6, util_out: 19.5, trend: 'down', percentage: '-1.8%', link: 'Link-E5', value: '298 GB', numericValue: 298, min: '200 GB', max: '350 GB', rate: '298 GB' },
+    { id: '1', link: 'Core-Router-A', interface: 'xe-0/1/2', description: 'Tokyo Peering Link', util_in_pct: 45.2, util_in_rate: '45.2 Gbps', util_out_pct: 38.7, util_out_rate: '38.7 Gbps', trend: 'up', percentage: '+5.3%' },
+    { id: '2', link: 'Edge-Router-B', interface: 'ge-1/0/1', description: 'Singapore IXP Link', util_in_pct: 72.5, util_in_rate: '7.25 Gbps', util_out_pct: 65.1, util_out_rate: '6.51 Gbps', trend: 'up', percentage: '+8.2%' },
+    { id: '3', link: 'Peering-Router-C', interface: 'bundle-ether1', description: 'India Direct Link', util_in_pct: 32.8, util_in_rate: '65.6 Gbps', util_out_pct: 28.3, util_out_rate: '56.6 Gbps', trend: 'down', percentage: '-3.1%' },
+    { id: '4', link: 'Core-Router-D', interface: 'xe-2/0/0', description: 'Vietnam Transit Link', util_in_pct: 58.4, util_in_rate: '5.84 Gbps', util_out_pct: 52.1, util_out_rate: '5.21 Gbps', trend: 'up', percentage: '+2.7%' },
+    { id: '5', link: 'Edge-Router-E', interface: 'ge-0/0/3', description: 'Malaysia Exchange Link', util_in_pct: 21.6, util_in_rate: '2.16 Gbps', util_out_pct: 19.5, util_out_rate: '1.95 Gbps', trend: 'down', percentage: '-1.8%' },
   ]
 };
 

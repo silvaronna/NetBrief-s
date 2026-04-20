@@ -1,8 +1,10 @@
-// Ganti import-nya menjadi LATENCY_CONGESTION
-import { LATENCY_CONGESTION } from '../../data/index.ts';
+// src/app/hooks/usePerformanceData.ts
+
+import { LATENCY_CONGESTION, TRAFFIC_3A_LINKS } from '../../data/index.ts';
 
 export function usePerformanceData() {
   return {
-    latencyData: LATENCY_CONGESTION
+    latencyData: LATENCY_CONGESTION,
+    links3AData: TRAFFIC_3A_LINKS.dataSource // Tambahkan ini
   };
 }
