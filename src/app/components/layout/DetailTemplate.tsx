@@ -3,6 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts';
 import { ArrowLeft, ChevronRight } from 'lucide-react';
 import { CHART_DATA_GENERATOR } from '../../../data/';
+import { TimeIntervalSelector } from '../ui/TimeIntervalSelector';
+import { useTimeInterval } from '../../hooks/useTimeInterval';
 
 function formatBytes(value: number) {
   if (value >= 1000) return `${(value / 1000).toFixed(1)} TB`;
@@ -53,6 +55,7 @@ export interface DetailTemplateProps {
 
 export function DetailTemplate({ title, data, columns, isTraffic = true }: DetailTemplateProps) {
   const navigate = useNavigate();
+  const { interval, setInterval } = useTimeInterval('24H');
 
   // State to manage selected rows
   const [selectedRows, setSelectedRows] = useState<Record<string, { color: string }>>({
@@ -111,11 +114,11 @@ export function DetailTemplate({ title, data, columns, isTraffic = true }: Detai
         {/* Controls */}
         <div className="flex items-center justify-between px-5 py-3 border-b border-[#27272a] shrink-0">
           <div className="flex items-center gap-3">
-            <select className="bg-[rgba(24,24,27,0.5)] border border-[#27272a] rounded px-3 py-1.5 text-[12px] text-[#d4d4d8] outline-none hover:border-[rgba(43,127,255,0.3)] transition-colors">
-              <option>Last 1 Hour</option>
-              <option>Last 24 Hours</option>
-              <option>Last 7 Days</option>
-            </select>
+            <span className="text-[12px] text-[#71717b] uppercase tracking-wide">Interval</span>
+            <TimeIntervalSelector 
+              selectedInterval={interval} 
+              onIntervalChange={setInterval}
+            />
           </div>
           <button className="w-8 h-8 rounded border border-[#27272a] flex items-center justify-center text-[#71717b] hover:bg-[#27272a] hover:text-[#f4f4f5] transition-all">
             <ChevronRight size={14} className="rotate-90" />
