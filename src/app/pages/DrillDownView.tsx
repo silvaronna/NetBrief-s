@@ -1,6 +1,7 @@
 import { useParams } from 'react-router-dom';
 import { TRAFFIC_TOP_NEIGHBOR_AS, TRAFFIC_3A_LINKS, LATENCY_CONGESTION } from '../../data';
 import { DetailTemplate, ColumnDef } from '../components/layout/DetailTemplate';
+import { TrafficGauge } from '../components/ui/TrafficGauge';
 
 const parseValue = (valStr: string) => {
   if (!valStr) return 0;
@@ -33,42 +34,31 @@ if (type === 'neighbor-as' || type === 'aggregator' || type === '3a-links') {
         render: (row) => <span className="text-[13px] font-['Inter'] text-[#d4d4d8] font-medium">{row.asn || row.link}</span>
       },
       { 
-        key: 'rate', 
-        label: 'Current Rate',
-        render: (row) => <span className="text-[12px] font-['JetBrains_Mono'] text-[#f4f4f5]">{row.rate}</span>
+        key: 'gauge', 
+        label: 'Traffic Gauge',
+        render: (row) => (
+          <div className="w-64">
+            <TrafficGauge 
+              min={row.min} 
+              max={row.max} 
+              current={row.rate}
+            />
+          </div>
+        )
       },
       { 
-        key: 'range', 
-        label: 'Min / Current / Max',
-        render: (row) => {
-          const absoluteMax = type === '3a-links' ? 2000 : 4000;
-          const maxHistory = parseValue(row.max);
-          const current = row.numericValue;
-          
-          const maxPct = Math.min(100, (maxHistory / absoluteMax) * 100);
-          const currentPct = Math.max(0, Math.min(100, (current / maxHistory) * 100));
-
-          return (
-            <div className="grid grid-cols-[60px_minmax(120px,200px)_60px] items-center gap-3">
-              {/* Teks Minimal */}
-              <span className="text-[11px] text-[#71717b] text-right font-['JetBrains_Mono']">{row.min}</span>
-              
-              {/* Pipa Custom untuk DrillDown */}
-              <div className="w-full h-2 bg-[#18181b] rounded-full overflow-hidden relative">
-                 <div className="absolute top-0 left-0 h-full bg-[#3f3f46] rounded-full overflow-hidden" style={{ width: `${maxPct}%` }}>
-                    <div className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#0EA5E9] to-[#8B5CF6] rounded-full" style={{ width: `${currentPct}%` }} />
-                 </div>
-              </div>
-
-              {/* Teks Maksimal */}
-              <span className="text-[11px] text-[#71717b] text-left font-['JetBrains_Mono']">{row.max}</span>
-            </div>
-          )
-        }
+        key: 'min', 
+        label: 'Min',
+        render: (row) => <span className="text-[12px] font-['JetBrains_Mono'] text-[#9f9fa9]">{row.min}</span>
+      },
+      { 
+        key: 'max', 
+        label: 'Max',
+        render: (row) => <span className="text-[12px] font-['JetBrains_Mono'] text-[#9f9fa9]">{row.max}</span>
       },
       { 
         key: 'percentage', 
-        label: 'Trend (24h)',
+        label: 'Trend',
         render: (row) => (
           <span className="text-[12px] font-['JetBrains_Mono'] font-medium" style={{ color: row.trend === 'up' ? '#00BC7D' : '#ff2056' }}>
             {row.percentage}

@@ -102,16 +102,18 @@ export const TRAFFIC_AGGREGATORS = [
 
 export const TRAFFIC_3A_LINKS = {
   columns: [
-    { key: 'link', label: 'Link Name' },
-    { key: 'value', label: 'Utilization' },
-    { key: 'percentage', label: 'Trend (24h)' },
+    { key: 'router', label: 'Router Name' },
+    { key: 'interface', label: 'Interface' },
+    { key: 'description', label: 'Interface Description' },
+    { key: 'util_in', label: 'Utilization In (%)' },
+    { key: 'util_out', label: 'Utilization Out (%)' },
   ],
   dataSource: [
-    { id: '1', link: 'Link-A1', value: '1.2 TB', numericValue: 1200, percentage: '+10.5%', trend: 'up', min: '800 GB', max: '1.5 TB', rate: '1.2 TB' },
-    { id: '2', link: 'Link-B2', value: '850 GB', numericValue: 850, percentage: '+5.1%', trend: 'up', min: '400 GB', max: '1.0 TB', rate: '850 GB' },
-    { id: '3', link: 'Link-C3', value: '620 GB', numericValue: 620, percentage: '-2.0%', trend: 'down', min: '500 GB', max: '700 GB', rate: '620 GB' },
-    { id: '4', link: 'Link-D4', value: '412 GB', numericValue: 412, percentage: '+1.5%', trend: 'up', min: '250 GB', max: '500 GB', rate: '412 GB' },
-    { id: '5', link: 'Link-E5', value: '298 GB', numericValue: 298, percentage: '-4.4%', trend: 'down', min: '200 GB', max: '350 GB', rate: '298 GB' },
+    { id: '1', router: 'Core-Router-A', interface: 'xe-0/1/2', description: 'Tokyo Peering Link', util_in: 45.2, util_out: 38.7, trend: 'up', percentage: '+5.3%', link: 'Link-A1', value: '1.2 TB', numericValue: 1200, min: '800 GB', max: '1.5 TB', rate: '1.2 TB' },
+    { id: '2', router: 'Edge-Router-B', interface: 'ge-1/0/1', description: 'Singapore IXP Link', util_in: 72.5, util_out: 65.1, trend: 'up', percentage: '+8.2%', link: 'Link-B2', value: '850 GB', numericValue: 850, min: '400 GB', max: '1.0 TB', rate: '850 GB' },
+    { id: '3', router: 'Peering-Router-C', interface: 'bundle-ether1', description: 'India Direct Link', util_in: 32.8, util_out: 28.3, trend: 'down', percentage: '-3.1%', link: 'Link-C3', value: '620 GB', numericValue: 620, min: '500 GB', max: '700 GB', rate: '620 GB' },
+    { id: '4', router: 'Core-Router-D', interface: 'xe-2/0/0', description: 'Vietnam Transit Link', util_in: 58.4, util_out: 52.1, trend: 'up', percentage: '+2.7%', link: 'Link-D4', value: '412 GB', numericValue: 412, min: '250 GB', max: '500 GB', rate: '412 GB' },
+    { id: '5', router: 'Edge-Router-E', interface: 'ge-0/0/3', description: 'Malaysia Exchange Link', util_in: 21.6, util_out: 19.5, trend: 'down', percentage: '-1.8%', link: 'Link-E5', value: '298 GB', numericValue: 298, min: '200 GB', max: '350 GB', rate: '298 GB' },
   ]
 };
 
