@@ -102,21 +102,27 @@ export const TRAFFIC_AGGREGATORS = [
 
 export const TRAFFIC_3A_LINKS = {
   columns: [
-    { key: 'link', label: 'Link Name' },
-    { key: 'interface', label: 'Interface Name' },
-    { key: 'description', label: 'Interface Description' },
-    { key: 'util_in_pct', label: 'Utilization In (%)' },
-    { key: 'util_in_rate', label: 'Utilization In (Rate)' },
-    { key: 'util_out_pct', label: 'Utilization Out (%)' },
-    { key: 'util_out_rate', label: 'Utilization Out (Rate)' },
-    { key: 'percentage', label: 'Trend' }
+    { key: 'id', label: '#' },
+    { key: 'router', label: 'Router Name' },
+    { key: 'interface', label: 'Interface' },
+    { key: 'description', label: 'Description' },
+    { key: 'util_in_pct', label: 'In (%)' },
+    { key: 'util_in_rate', label: 'In Rate' },
+    { key: 'util_out_pct', label: 'Out (%)' },
+    { key: 'util_out_rate', label: 'Out Rate' },
+    { key: 'trend', label: 'Trend' },
   ],
   dataSource: [
-    { id: '1', link: 'Core-Router-A', interface: 'xe-0/1/2', description: 'Tokyo Peering Link', util_in_pct: 45.2, util_in_rate: '45.2 Gbps', util_out_pct: 38.7, util_out_rate: '38.7 Gbps', trend: 'up', percentage: '+5.3%' },
-    { id: '2', link: 'Edge-Router-B', interface: 'ge-1/0/1', description: 'Singapore IXP Link', util_in_pct: 72.5, util_in_rate: '7.25 Gbps', util_out_pct: 65.1, util_out_rate: '6.51 Gbps', trend: 'up', percentage: '+8.2%' },
-    { id: '3', link: 'Peering-Router-C', interface: 'bundle-ether1', description: 'India Direct Link', util_in_pct: 32.8, util_in_rate: '65.6 Gbps', util_out_pct: 28.3, util_out_rate: '56.6 Gbps', trend: 'down', percentage: '-3.1%' },
-    { id: '4', link: 'Core-Router-D', interface: 'xe-2/0/0', description: 'Vietnam Transit Link', util_in_pct: 58.4, util_in_rate: '5.84 Gbps', util_out_pct: 52.1, util_out_rate: '5.21 Gbps', trend: 'up', percentage: '+2.7%' },
-    { id: '5', link: 'Edge-Router-E', interface: 'ge-0/0/3', description: 'Malaysia Exchange Link', util_in_pct: 21.6, util_in_rate: '2.16 Gbps', util_out_pct: 19.5, util_out_rate: '1.95 Gbps', trend: 'down', percentage: '-1.8%' },
+    { id: '1', link: 'EBR.TBS.1', interface: 'xe-0/1/2', description: 'Tokyo Peering Link', util_in_pct: 45.2, util_in_rate: '45.2 Gbps', util_out_pct: 38.7, util_out_rate: '38.7 Gbps', trend: 'up', percentage: '+5.3%', numericValue: 45.2 },
+    { id: '2', link: 'EBR.MPY.2', interface: 'ge-1/0/1', description: 'Singapore IXP Link', util_in_pct: 72.5, util_in_rate: '7.25 Gbps', util_out_pct: 65.1, util_out_rate: '6.51 Gbps', trend: 'up', percentage: '+8.2%', numericValue: 72.5 },
+    { id: '3', link: 'EBR.BRN.1', interface: 'bundle-ether1', description: 'India Direct Link', util_in_pct: 32.8, util_in_rate: '32.8 Gbps', util_out_pct: 28.3, util_out_rate: '28.3 Gbps', trend: 'down', percentage: '-3.1%', numericValue: 32.8 },
+    { id: '4', link: 'EBR.GATE-IDC', interface: 'xe-2/0/0', description: 'Vietnam Transit Link', util_in_pct: 58.4, util_in_rate: '58.4 Gbps', util_out_pct: 52.1, util_out_rate: '52.1 Gbps', trend: 'up', percentage: '+2.7%', numericValue: 58.4 },
+    { id: '5', link: 'EBR.EDGE.1', interface: 'ge-0/0/3', description: 'Malaysia Exchange Link', util_in_pct: 21.6, util_in_rate: '2.16 Gbps', util_out_pct: 19.5, util_out_rate: '1.95 Gbps', trend: 'down', percentage: '-1.8%', numericValue: 21.6 },
+    { id: '6', link: 'EBR.GATE-CORP', interface: 'xe-1/1/0', description: 'Hong Kong PNI', util_in_pct: 88.2, util_in_rate: '88.2 Gbps', util_out_pct: 79.4, util_out_rate: '79.4 Gbps', trend: 'up', percentage: '+12.5%', numericValue: 88.2 },
+    { id: '7', link: 'EBR.GATE-IDC', interface: 'be10', description: 'Local Content Cache', util_in_pct: 15.4, util_in_rate: '1.54 Gbps', util_out_pct: 65.2, util_out_rate: '6.52 Gbps', trend: 'up', percentage: '+1.2%', numericValue: 15.4 },
+    { id: '8', link: 'EBR.BRN.1', interface: 'xe-0/0/5', description: 'Australia Direct', util_in_pct: 42.1, util_in_rate: '42.1 Gbps', util_out_pct: 31.5, util_out_rate: '31.5 Gbps', trend: 'down', percentage: '-4.5%', numericValue: 42.1 },
+    { id: '9', link: 'EBR.GATE-IDC', interface: 'ge-1/2/1', description: 'US West Coast Transit', util_in_pct: 63.7, util_in_rate: '6.37 Gbps', util_out_pct: 55.2, util_out_rate: '5.52 Gbps', trend: 'up', percentage: '+6.8%', numericValue: 63.7 },
+    { id: '10', link: 'EBR.BRN.1', interface: 'bundle-ether5', description: 'European IXP via SEA-ME-WE-5', util_in_pct: 29.8, util_in_rate: '29.8 Gbps', util_out_pct: 24.1, util_out_rate: '24.1 Gbps', trend: 'down', percentage: '-2.2%', numericValue: 29.8 },
   ]
 };
 
@@ -126,7 +132,7 @@ export const TRAFFIC_3A_LINKS = {
 export const LATENCY_CONGESTION = {
   thresholdPercentage: 30, // threshold visually represented as > 30%
   columns: [
-    { key: 'link', label: 'Link Name' },
+    { key: 'router', label: 'Router Name' },
     { key: 'interface', label: 'Interface' },
     { key: 'current', label: 'Current' },
     { key: 'max', label: 'Max latency' },
@@ -134,29 +140,36 @@ export const LATENCY_CONGESTION = {
     { key: 'avg', label: 'Average latency' },
   ],
   dataSource: [
-    { id: '1', link: 'Core-Router-A', interface: 'xe-0/1/2', current: '35ms', max: '45ms', min: '12ms', avg: '20ms', isCongested: true, numericValue: 35 },
-    { id: '2', link: 'Edge-Router-B', interface: 'ge-1/0/1', current: '18ms', max: '22ms', min: '10ms', avg: '15ms', isCongested: false, numericValue: 18 },
-    { id: '3', link: 'Peering-Router-C', interface: 'bundle-ether1', current: '60ms', max: '85ms', min: '25ms', avg: '40ms', isCongested: true, numericValue: 60 },
-    { id: '4', link: 'Core-Router-D', interface: 'xe-2/0/0', current: '11ms', max: '15ms', min: '8ms', avg: '10ms', isCongested: false, numericValue: 11 },
-    { id: '5', link: 'Edge-Router-E', interface: 'ge-0/0/3', current: '40ms', max: '55ms', min: '15ms', avg: '25ms', isCongested: true, numericValue: 40 },
+    { id: '1', link: 'EBR.TBS.1', interface: 'ae2', current: '35ms', max: '45ms', min: '12ms', avg: '20ms', isCongested: true, numericValue: 35 },
+    { id: '2', link: 'EBR.MPY.2', interface: 'ae4', current: '18ms', max: '22ms', min: '10ms', avg: '15ms', isCongested: false, numericValue: 18 },
+    { id: '3', link: 'EBR.BRN.1', interface: 'ae1', current: '60ms', max: '85ms', min: '25ms', avg: '40ms', isCongested: true, numericValue: 60 },
+    { id: '4', link: 'EBR.GATE-IDC', interface: 'ae1', current: '11ms', max: '15ms', min: '8ms', avg: '10ms', isCongested: false, numericValue: 11 },
+    { id: '5', link: 'EBR.GATE-CORP', interface: 'ae5', current: '40ms', max: '55ms', min: '15ms', avg: '25ms', isCongested: true, numericValue: 40 },
   ]
 };
 
 // ==========================================
 // 4. UTILITIES / GENERATORS
 // ==========================================
-export const CHART_DATA_GENERATOR = (count = 24) => {
+export const CHART_DATA_GENERATOR = (count = 24, interval: '5m' | '30m' | '1h' = '1h') => {
   const data = [];
   const now = new Date();
+
+  // Konversi interval ke milidetik (Data Granularity Step)
+  let stepMs = 3600000; // Default 1 jam
+  if (interval === '5m') stepMs = 5 * 60 * 1000;    // 300,000 ms
+  if (interval === '30m') stepMs = 30 * 60 * 1000;  // 1,800,000 ms
+  if (interval === '1h') stepMs = 60 * 60 * 1000;   // 3,600,000 ms
+
   for (let i = 0; i < count; i++) {
-    const time = new Date(now.getTime() - (count - i - 1) * 3600000);
+    const time = new Date(now.getTime() - (count - i - 1) * stepMs);
     data.push({
       timestamp: time.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false }),
       val1: Math.floor(Math.random() * 500) + 200,
       val2: Math.floor(Math.random() * 400) + 100,
       val3: Math.floor(Math.random() * 300) + 50,
       val4: Math.floor(Math.random() * 200) + 20,
-      unix: time.getTime()
+      unix: time.getTime() // Unix time sangat penting untuk Recharts XAxis
     });
   }
   return data;

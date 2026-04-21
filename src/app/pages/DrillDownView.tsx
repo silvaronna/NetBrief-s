@@ -39,7 +39,7 @@ let columns: ColumnDef[] = [];
     // Tampilan Spesifik 3A-Links: Tanpa Gauge, Fokus Pada Rate
     // --------------------------------------------------------
     columns = [
-      { key: 'link', label: 'Link Name', render: (row) => <span className="text-[13px] font-['Inter'] text-[#d4d4d8] font-medium whitespace-nowrap">{row.link}</span> },
+      { key: 'router', label: 'Router Name', render: (row) => <span className="text-[13px] font-['Inter'] text-[#d4d4d8] font-medium whitespace-nowrap">{row.link}</span> },
       { key: 'interface', label: 'Interface Name', render: (row) => <span className="text-[12px] font-['JetBrains_Mono'] text-[#9f9fa9]">{row.interface}</span> },
       { key: 'description', label: 'Interface Description', render: (row) => <span className="text-[12px] text-[#a1a1a6]">{row.description}</span> },
       { key: 'util_in_pct', label: 'Util In (%)', render: (row) => <span className="text-[12px] font-['JetBrains_Mono'] text-[#e4e4e7]">{row.util_in_pct.toFixed(1)}%</span> },
@@ -50,7 +50,7 @@ let columns: ColumnDef[] = [];
     ];
   } else if (type === 'latency') {
     columns = [
-      { key: 'link', label: 'Link Name', render: (row) => <span className="text-[13px] font-['Inter'] text-[#d4d4d8] font-medium">{row.link}</span> },
+      { key: 'router', label: 'Router Name', render: (row) => <span className="text-[13px] font-['Inter'] text-[#d4d4d8] font-medium">{row.link}</span> },
       { key: 'interface', label: 'Interface', render: (row) => <span className="text-[12px] font-['JetBrains_Mono'] text-[#9f9fa9]">{row.interface}</span> },
       { key: 'current', label: 'Current', render: (row) => <span className="text-[12px] font-['JetBrains_Mono'] font-medium" style={{ color: row.isCongested ? '#ff637e' : '#d4d4d8' }}>{row.current}</span> },
       { key: 'max', label: 'Max', render: (row) => <span className="text-[12px] font-['JetBrains_Mono'] text-[#9f9fa9]">{row.max}</span> },

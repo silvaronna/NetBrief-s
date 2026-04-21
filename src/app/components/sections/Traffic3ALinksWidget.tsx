@@ -1,5 +1,3 @@
-// src/app/components/sections/Traffic3ALinksWidget.tsx
-
 import { useNavigate } from 'react-router-dom';
 import { PanelHeader } from '../ui/PanelHeader';
 
@@ -8,7 +6,10 @@ export function Traffic3ALinksWidget({ data }: { data: any[] }) {
 
   return (
     <div className="bg-[#09090b] rounded-lg border border-[#27272a] shadow-lg flex flex-col hover:border-[rgba(43,127,255,0.3)] transition-colors">
-      <PanelHeader title="Top 10 Traffic 3A Links" onDrillDown={() => navigate('/drilldown/3a-links')} />
+      <PanelHeader 
+        title="Top 10 Traffic 3A Links" 
+        onDrillDown={() => navigate('/drilldown/3a-links')} 
+      />
       <div className="p-4 overflow-x-auto">
         <table className="w-full text-left min-w-[600px]">
           <thead>

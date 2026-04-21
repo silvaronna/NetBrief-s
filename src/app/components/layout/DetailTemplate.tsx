@@ -55,7 +55,7 @@ export interface DetailTemplateProps {
 
 export function DetailTemplate({ title, data, columns, isTraffic = true }: DetailTemplateProps) {
   const navigate = useNavigate();
-  const { interval, setInterval } = useTimeInterval('24H');
+  const { interval, setInterval } = useTimeInterval('1h' as any);
 
   // State to manage selected rows
   const [selectedRows, setSelectedRows] = useState<Record<string, { color: string }>>({
@@ -63,7 +63,9 @@ export function DetailTemplate({ title, data, columns, isTraffic = true }: Detai
     '2': { color: '#8B5CF6' }
   });
 
-  const baseChartData = useMemo(() => CHART_DATA_GENERATOR(24), []);
+  const baseChartData = useMemo(() => {
+    return CHART_DATA_GENERATOR(48, interval as any);
+  }, [interval]);
 
   const chartData = useMemo(() => {
     return baseChartData.map(point => {

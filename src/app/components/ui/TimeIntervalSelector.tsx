@@ -9,23 +9,11 @@ export interface TimeIntervalSelectorProps {
 }
 
 const INTERVAL_OPTIONS: { value: TimeIntervalType; label: string; title: string }[] = [
-  { value: '1H', label: '1H', title: 'Last 1 Hour' },
-  { value: '24H', label: '24H', title: 'Last 24 Hours' },
-  { value: '7D', label: '7D', title: 'Last 7 Days' },
+  { value: '5m', label: '5m', title: 'Granularitas 5 Menit' },
+  { value: '30m', label: '30m', title: 'Granularitas 30 Menit' },
+  { value: '1h', label: '1h', title: 'Granularitas 1 Jam' },
 ];
 
-/**
- * TimeIntervalSelector Component
- * 
- * Inline button group for selecting time intervals.
- * Replaces the dropdown-based selector for improved accessibility
- * and reduced empty space in table headers.
- * 
- * Features:
- * - Keyboard accessible (Tab navigation, Enter/Space to select)
- * - Clear visual feedback for selected state
- * - Tooltips for each interval option
- */
 export function TimeIntervalSelector({
   selectedInterval,
   onIntervalChange,
@@ -33,20 +21,21 @@ export function TimeIntervalSelector({
 }: TimeIntervalSelectorProps) {
   return (
     <div
-      className={`inline-flex gap-1 bg-gray-800 p-1 rounded-md ${className}`}
+      className={`inline-flex bg-[#18181b] border border-[#27272a] p-0.5 rounded shadow-sm ${className}`}
       role="group"
-      aria-label="Time interval selector"
     >
       {INTERVAL_OPTIONS.map((option) => (
         <button
           key={option.value}
-          onClick={() => onIntervalChange(option.value)}
+          onClick={(e) => {
+            e.stopPropagation(); // Mencegah trigger drill-down jika dipasang di PanelHeader
+            onIntervalChange(option.value);
+          }}
           title={option.title}
-          aria-pressed={selectedInterval === option.value}
-          className={`px-3 py-1.5 text-sm font-medium rounded transition-all duration-200 ${
+          className={`px-2.5 py-1 text-[10px] font-bold font-['JetBrains_Mono'] transition-all duration-200 rounded-[2px] ${
             selectedInterval === option.value
-              ? 'bg-white text-gray-900 shadow-sm'
-              : 'bg-transparent text-gray-400 hover:text-gray-300 hover:bg-gray-700/50'
+              ? 'bg-[#27272a] text-[#0ea5e9]'
+              : 'text-[#71717b] hover:text-[#d4d4d8] hover:bg-[rgba(255,255,255,0.03)]'
           }`}
         >
           {option.label}
