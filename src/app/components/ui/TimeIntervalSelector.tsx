@@ -21,7 +21,7 @@ export function TimeIntervalSelector({
 }: TimeIntervalSelectorProps) {
   return (
     <div
-      className={`inline-flex bg-[#18181b] border border-[#27272a] p-0.5 rounded shadow-sm ${className}`}
+      className={`inline-flex bg-[#18230F] border border-[#255F38] p-0.5 rounded shadow-inner ${className}`}
       role="group"
     >
       {INTERVAL_OPTIONS.map((option) => (
@@ -34,8 +34,8 @@ export function TimeIntervalSelector({
           title={option.title}
           className={`px-2.5 py-1 text-[10px] font-bold font-['JetBrains_Mono'] transition-all duration-200 rounded-[2px] ${
             selectedInterval === option.value
-              ? 'bg-[#27272a] text-[#0ea5e9]'
-              : 'text-[#71717b] hover:text-[#d4d4d8] hover:bg-[rgba(255,255,255,0.03)]'
+              ? 'bg-[#1F7D53] text-[#ffffff] shadow-sm'
+              : 'text-[#a1a1aa] hover:text-[#ffffff] hover:bg-[rgba(37,95,56,0.3)]'
           }`}
         >
           {option.label}

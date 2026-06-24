@@ -9,9 +9,9 @@ export function DashboardLayout() {
   const menuRef = useRef<HTMLDivElement>(null);
 
   const tabs = [
-    { id: 'alerts', label: 'Alerts', path: '/', icon: AlertTriangle, activeColor: '#00BC7D', bg: 'rgba(0,188,125,0.1)' },
-    { id: 'traffic', label: 'Traffic', path: '/traffic', icon: Activity, activeColor: '#2B7FFF', bg: 'rgba(43,127,255,0.1)' },
-    { id: 'performance', label: 'Performance', path: '/performance', icon: Zap, activeColor: '#F97316', bg: 'rgba(249,115,22,0.1)' }
+    { id: 'alerts', label: 'Alerts', path: '/', icon: AlertTriangle, activeColor: '#1F7D53', bg: 'rgba(31,125,83,0.15)' },
+    { id: 'traffic', label: 'Traffic', path: '/traffic', icon: Activity, activeColor: '#1F7D53', bg: 'rgba(31,125,83,0.15)' },
+    { id: 'performance', label: 'Performance', path: '/performance', icon: Zap, activeColor: '#1F7D53', bg: 'rgba(31,125,83,0.15)' }
   ];
 
   const currentTab = location.pathname.split('/')[1] || 'alerts';
@@ -27,22 +27,25 @@ export function DashboardLayout() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#09090b] text-[#f4f4f5] font-['Inter',sans-serif] flex flex-col">
+    <div className="min-h-screen bg-gradient-to-br from-[#18230F] via-[#121c0b] to-[#0d1607] text-[#f4f4f5] font-['Inter',sans-serif] flex flex-col">
       {/* Header */}
-      <header className="h-[79px] bg-[rgba(9,9,11,0.8)] shadow-md shrink-0 flex items-center justify-between px-6 border-b border-[#27272a] relative z-50">
+      <header className="h-[79px] bg-[rgba(24,35,15,0.75)] backdrop-blur-lg shadow-2xl shrink-0 flex items-center justify-between px-6 border-b border-[#255F38]/40 relative z-50 animate-header-down">
         <div className="flex items-center gap-4">
           
-          {/* 2. Gunakan tag <img> untuk me-render logo */}
-          <img 
-            src="/mtm-logo.png"
-            alt="MTM Logo" 
-            className="w-10 h-10 object-contain hover:scale-105 transition-transform cursor-pointer" 
-            onClick={() => navigate('/')} 
-          />
+          {/* logo */}
+          <div className="relative group">
+            <div className="absolute inset-0 bg-[#1F7D53] rounded-full blur-md opacity-25 group-hover:opacity-75 transition-opacity duration-500" />
+            <img 
+              src="/mtm-logo.png"
+              alt="MTM Logo" 
+              className="w-10 h-10 object-contain relative z-10 hover:rotate-6 transition-transform cursor-pointer" 
+              onClick={() => navigate('/')} 
+            />
+          </div>
           
           <div>
-            <h1 className="font-bold text-[18px] tracking-wide uppercase text-[#f4f4f5]">mtm NetBRIEF</h1>
-            <p className="font-['JetBrains_Mono',monospace] text-[12px] text-[#71717b]">Summarized Network Utilization</p>
+            <h1 className="font-bold text-[18px] tracking-widest uppercase text-[#ffffff] glow-text-emerald">mtm NetBRIEF</h1>
+            <p className="font-['JetBrains_Mono',monospace] text-[11px] text-[#a7f3d0]/70 tracking-wider">Summarized Network Utilization</p>
           </div>
         </div>
 
@@ -55,22 +58,32 @@ export function DashboardLayout() {
                   key={tab.id}
                   onClick={() => navigate(tab.path)}
                   className={`
-                    flex items-center gap-2 h-10 px-3 transition-all duration-300 rounded-md
-                    hover:scale-105
+                    flex flex-col items-center justify-center gap-1 h-12 px-4 transition-all duration-300 rounded-lg relative overflow-hidden group
                   `}
                   style={{
-                    color: isActive ? tab.activeColor : 'rgba(159,159,169,0.5)',
-                    textShadow: isActive ? `0px 4px 6px ${tab.activeColor}` : 'none',
-                    backgroundColor: isActive ? tab.bg : 'transparent',
+                    color: isActive ? tab.activeColor : 'rgba(244,244,245,0.6)',
                   }}
                 >
-                  <tab.icon 
-                    size={16} 
-                    stroke={isActive ? tab.activeColor : 'rgba(159,159,169,0.5)'} 
-                  />
-                  <span className={`font-['JetBrains_Mono',monospace] text-[15px] ${isActive ? 'font-bold' : 'font-normal'}`}>
-                    {tab.label}
-                  </span>
+                  {/* Subtle hover background tab */}
+                  <div className="absolute inset-0 bg-[rgba(31,125,83,0.05)] opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  
+                  <div className="flex items-center gap-2 relative z-10 transition-transform duration-300 group-hover:scale-105">
+                    <tab.icon 
+                      size={15} 
+                      stroke={isActive ? tab.activeColor : 'rgba(244,244,245,0.6)'} 
+                    />
+                    <span className={`font-['JetBrains_Mono',monospace] text-[14px] ${isActive ? 'font-bold' : 'font-normal'}`}>
+                      {tab.label}
+                    </span>
+                  </div>
+
+                  {/* Active glowing underline dot */}
+                  {isActive && (
+                    <span 
+                      className="absolute bottom-1 w-1.5 h-1.5 rounded-full glow-border-emerald"
+                      style={{ backgroundColor: tab.activeColor }}
+                    />
+                  )}
                 </button>
               );
             })}
@@ -79,25 +92,25 @@ export function DashboardLayout() {
           <div className="relative" ref={menuRef}>
             <button 
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className={`w-10 h-10 rounded-md border flex items-center justify-center transition-colors ${isMenuOpen ? 'bg-[#27272a] border-[#3f3f46] text-[#f4f4f5]' : 'bg-[rgba(24,24,27,0.5)] border-[rgba(39,39,42,0.5)] text-[#9f9fa9] hover:bg-[#27272a] hover:text-[#f4f4f5]'}`}
+              className={`w-10 h-10 rounded-lg border flex items-center justify-center transition-all duration-300 ${isMenuOpen ? 'bg-[#27391C] border-[#1F7D53] text-[#ffffff] shadow-[0_0_10px_rgba(31,125,83,0.3)]' : 'bg-[rgba(39,57,28,0.4)] border-[#255F38] text-[#e4e4e7] hover:bg-[#27391C] hover:border-[#1F7D53] hover:text-[#ffffff] hover:scale-105'}`}
             >
               <Menu size={20} />
             </button>
             
             {isMenuOpen && (
-              <div className="absolute top-full right-0 mt-2 w-48 bg-[rgba(9,9,11,0.95)] backdrop-blur-md border border-[#27272a] rounded-lg shadow-xl overflow-hidden animate-in fade-in slide-in-from-top-2 duration-200">
-                <div className="flex flex-col py-1">
-                  <button className="flex items-center gap-3 px-4 py-2.5 text-[13px] text-[#d4d4d8] hover:bg-[#27272a] hover:text-[#f4f4f5] transition-colors w-full text-left">
-                    <Settings size={14} className="text-[#9f9fa9]" />
+              <div className="absolute top-full right-0 mt-2 w-48 bg-[rgba(39,57,28,0.95)] backdrop-blur-lg border border-[#1F7D53]/50 rounded-xl shadow-[0_10px_35px_rgba(0,0,0,0.5)] overflow-hidden animate-in fade-in slide-in-from-top-2 duration-300">
+                <div className="flex flex-col py-1.5">
+                  <button className="flex items-center gap-3 px-4 py-2.5 text-[13px] text-[#d4d4d8] hover:bg-[#255F38] hover:text-[#ffffff] transition-colors w-full text-left">
+                    <Settings size={14} className="text-[#a1a1aa]" />
                     <span>Configuration</span>
                   </button>
-                  <button className="flex items-center gap-3 px-4 py-2.5 text-[13px] text-[#d4d4d8] hover:bg-[#27272a] hover:text-[#f4f4f5] transition-colors w-full text-left">
-                    <User size={14} className="text-[#9f9fa9]" />
+                  <button className="flex items-center gap-3 px-4 py-2.5 text-[13px] text-[#d4d4d8] hover:bg-[#255F38] hover:text-[#ffffff] transition-colors w-full text-left">
+                    <User size={14} className="text-[#a1a1aa]" />
                     <span>User</span>
                   </button>
-                  <div className="h-[1px] bg-[#27272a] my-1" />
-                  <button className="flex items-center gap-3 px-4 py-2.5 text-[13px] text-[#d4d4d8] hover:bg-[#27272a] hover:text-[#f4f4f5] transition-colors w-full text-left">
-                    <Info size={14} className="text-[#9f9fa9]" />
+                  <div className="h-[1px] bg-[#255F38]/60 my-1.5 mx-2" />
+                  <button className="flex items-center gap-3 px-4 py-2.5 text-[13px] text-[#d4d4d8] hover:bg-[#255F38] hover:text-[#ffffff] transition-colors w-full text-left">
+                    <Info size={14} className="text-[#a1a1aa]" />
                     <span>About</span>
                   </button>
                 </div>

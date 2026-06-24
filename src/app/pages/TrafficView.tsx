@@ -6,9 +6,13 @@ export function TrafficView() {
   const { neighborAS, aggregators, links } = useTrafficData();
 
   return (
-    <div className="flex flex-col gap-6 w-full animate-in fade-in duration-300">
-      <TopNeighborAsWidget data={neighborAS} />
-      <TrafficAggregatorWidget data={aggregators} />
+    <div className="flex flex-col gap-6 w-full">
+      <div className="animate-fade-in-up">
+        <TopNeighborAsWidget data={neighborAS} />
+      </div>
+      <div className="animate-scale-up animation-delay-150">
+        <TrafficAggregatorWidget data={aggregators} />
+      </div>
     </div>
   );
 }

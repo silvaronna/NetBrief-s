@@ -15,7 +15,7 @@ function formatBytes(value: number) {
 function CustomTooltip({ active, payload, label, isTraffic }: any) {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-[rgba(9,9,11,0.9)] border border-[#27272a] rounded-lg p-3 shadow-xl backdrop-blur-sm">
+      <div className="bg-[rgba(24,35,15,0.95)] border border-[#255F38] rounded-xl p-3 shadow-2xl backdrop-blur-md">
         <p className="text-[#d4d4d8] text-[12px] font-['JetBrains_Mono'] mb-2">{label}</p>
         <div className="flex flex-col gap-1">
           {payload.map((entry: any, index: number) => (
@@ -99,11 +99,11 @@ export function DetailTemplate({ title, data, columns, isTraffic = true }: Detai
   };
 
   return (
-    <div className="flex flex-col h-full animate-in slide-in-from-right-4 duration-300">
-      <div className="flex items-center gap-4 mb-4">
+    <div className="flex flex-col h-full animate-scale-up">
+      <div className="flex items-center gap-4 mb-4 animate-fade-in-left">
         <button 
           onClick={() => navigate(-1)}
-          className="w-8 h-8 rounded border border-[#27272a] bg-[#09090b] flex items-center justify-center text-[#9f9fa9] hover:bg-[#27272a] hover:text-[#f4f4f5] transition-all"
+          className="w-8 h-8 rounded border border-[#255F38] bg-[#27391C] flex items-center justify-center text-[#d4d4d8] hover:bg-[#255F38] hover:border-[#1F7D53] hover:text-[#ffffff] transition-all"
         >
           <ArrowLeft size={16} />
         </button>
@@ -112,37 +112,50 @@ export function DetailTemplate({ title, data, columns, isTraffic = true }: Detai
         </h2>
       </div>
 
-      <div className="bg-[#09090b] rounded-lg border border-[#27272a] shadow-lg flex flex-col flex-1 min-h-0">
+      <div className="bg-[#27391C] rounded-xl border border-[#255F38] shadow-2xl flex flex-col flex-1 min-h-0 relative overflow-hidden group">
+        {/* Premium indicator top line */}
+        <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#1F7D53]/60 to-transparent group-hover:via-[#1F7D53] transition-all duration-500" />
+        
         {/* Controls */}
-        <div className="flex items-center justify-between px-5 py-3 border-b border-[#27272a] shrink-0">
+        <div className="flex items-center justify-between px-5 py-3 border-b border-[#255F38] pt-4 shrink-0">
           <div className="flex items-center gap-3">
-            <span className="text-[12px] text-[#71717b] uppercase tracking-wide">Interval</span>
+            <span className="text-[12px] text-[#a1a1aa] uppercase tracking-wide">Interval</span>
             <TimeIntervalSelector 
               selectedInterval={interval} 
               onIntervalChange={setInterval}
             />
           </div>
-          <button className="w-8 h-8 rounded border border-[#27272a] flex items-center justify-center text-[#71717b] hover:bg-[#27272a] hover:text-[#f4f4f5] transition-all">
+          <button className="w-8 h-8 rounded border border-[#255F38] flex items-center justify-center text-[#a1a1aa] hover:bg-[#255F38] hover:text-[#ffffff] hover:border-[#1F7D53] transition-all">
             <ChevronRight size={14} className="rotate-90" />
           </button>
         </div>
 
         {/* Stacked Area Chart */}
-        <div className="h-[250px] border-b border-[#27272a] p-5 shrink-0 bg-[rgba(24,24,27,0.2)]">
+        <div className="h-[250px] border-b border-[#255F38] p-5 shrink-0 bg-[rgba(24,35,15,0.45)]">
           <ResponsiveContainer width="100%" height="100%">
             <AreaChart data={chartData}>
-              <CartesianGrid strokeDasharray="3 3" stroke="#27272a" vertical={false} />
+              <defs>
+                {Object.keys(selectedRows)
+                  .filter(rowId => data.some(r => r.id === rowId))
+                  .map((rowId) => (
+                    <linearGradient key={`grad-${rowId}`} id={`colorUv-${rowId}`} x1="0" y1="0" x2="0" y2="1">
+                      <stop offset="5%" stopColor={selectedRows[rowId].color} stopOpacity={0.4}/>
+                      <stop offset="95%" stopColor={selectedRows[rowId].color} stopOpacity={0}/>
+                    </linearGradient>
+                  ))}
+              </defs>
+              <CartesianGrid strokeDasharray="3 3" stroke="#255F38" strokeOpacity={0.4} vertical={false} />
               <XAxis 
                 dataKey="unix" 
                 tickFormatter={(unix) => new Date(unix).toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', hour12: false })}
-                stroke="#71717b" 
+                stroke="#a1a1aa" 
                 fontSize={10} 
                 tickLine={false} 
                 axisLine={false} 
                 tickMargin={10}
               />
               <YAxis 
-                stroke="#71717b" 
+                stroke="#a1a1aa" 
                 fontSize={10} 
                 tickLine={false} 
                 axisLine={false}
@@ -161,9 +174,9 @@ export function DetailTemplate({ title, data, columns, isTraffic = true }: Detai
                       dataKey={rowId} 
                       name={name}
                       stroke={selectedRows[rowId].color} 
-                      fill={selectedRows[rowId].color}
-                      fillOpacity={0.2}
-                      strokeWidth={2}
+                      fill={`url(#colorUv-${rowId})`}
+                      fillOpacity={1}
+                      strokeWidth={2.5}
                       stackId="1"
                       activeDot={{ r: 4, strokeWidth: 0 }}
                       animationDuration={300}
@@ -177,13 +190,13 @@ export function DetailTemplate({ title, data, columns, isTraffic = true }: Detai
         {/* Drill-down Table */}
         <div className="flex-1 overflow-auto relative">
           <table className="w-full min-w-max text-left border-collapse">
-            <thead className="sticky top-0 bg-[rgba(24,24,27,0.95)] z-10">
+            <thead className="sticky top-0 bg-[rgba(39,57,28,0.98)] z-10">
               <tr>
-                <th className="h-10 px-5 w-14 border-b border-[#27272a]"></th>
+                <th className="h-10 px-5 w-14 border-b border-[#255F38]"></th>
                 {columns.map((col) => (
                   <th 
                     key={col.key} 
-                    className={`h-10 px-5 font-medium text-[#71717b] text-[12px] uppercase border-b border-[#27272a] ${col.width || ''}`}
+                    className={`h-10 px-5 font-medium text-[#a1a1aa] text-[12px] uppercase border-b border-[#255F38] ${col.width || ''}`}
                     style={{ textAlign: col.align || 'left' }}
                   >
                     {col.label}
@@ -197,15 +210,15 @@ export function DetailTemplate({ title, data, columns, isTraffic = true }: Detai
                 const color = isSelected ? selectedRows[row.id].color : 'transparent';
                 
                 return (
-                  <tr key={`table-row-${row.id}`} className="border-b border-[rgba(39,39,42,0.3)] hover:bg-[rgba(24,24,27,0.4)] transition-colors h-[48px]">
+                  <tr key={`table-row-${row.id}`} className="border-b border-[rgba(37,95,56,0.15)] hover:bg-[rgba(37,95,56,0.1)] transition-colors h-[48px]">
                     <td className="px-5 cursor-pointer" onClick={() => toggleRow(row.id)}>
                       <div 
-                        className={`w-4 h-4 rounded-sm border ${isSelected ? 'border-transparent' : 'border-[#71717b]'} flex items-center justify-center transition-all`}
+                        className={`w-4 h-4 rounded border ${isSelected ? 'border-transparent' : 'border-[#255F38] bg-[#18230F]'} flex items-center justify-center transition-all cursor-pointer`}
                         style={{ backgroundColor: isSelected ? color : 'transparent' }}
                       >
                         {isSelected && (
                           <svg width="10" height="8" viewBox="0 0 10 8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M1 4L3.5 6.5L9 1" stroke="#09090b" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                            <path d="M1 4L3.5 6.5L9 1" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                           </svg>
                         )}
                       </div>

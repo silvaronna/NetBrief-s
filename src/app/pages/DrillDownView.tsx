@@ -32,7 +32,7 @@ let columns: ColumnDef[] = [];
       { key: 'gauge', label: 'Traffic Gauge', render: (row) => <div className="w-64"><TrafficGauge min={row.min} max={row.max} current={row.rate} /></div> },
       { key: 'min', label: 'Min', render: (row) => <span className="text-[12px] font-['JetBrains_Mono'] text-[#9f9fa9]">{row.min}</span> },
       { key: 'max', label: 'Max', render: (row) => <span className="text-[12px] font-['JetBrains_Mono'] text-[#9f9fa9]">{row.max}</span> },
-      { key: 'percentage', label: 'Trend', render: (row) => <span className="text-[12px] font-['JetBrains_Mono'] font-medium" style={{ color: row.trend === 'up' ? '#00BC7D' : '#ff2056' }}>{row.percentage}</span> }
+      { key: 'percentage', label: 'Trend', render: (row) => <span className="text-[12px] font-['JetBrains_Mono'] font-medium" style={{ color: row.trend === 'up' ? '#1F7D53' : '#ff3b30' }}>{row.percentage}</span> }
     ];
   } else if (type === '3a-links') {
     // --------------------------------------------------------
@@ -41,12 +41,12 @@ let columns: ColumnDef[] = [];
     columns = [
       { key: 'router', label: 'Router Name', render: (row) => <span className="text-[13px] font-['Inter'] text-[#d4d4d8] font-medium whitespace-nowrap">{row.link}</span> },
       { key: 'interface', label: 'Interface Name', render: (row) => <span className="text-[12px] font-['JetBrains_Mono'] text-[#9f9fa9]">{row.interface}</span> },
-      { key: 'description', label: 'Interface Description', render: (row) => <span className="text-[12px] text-[#a1a1a6]">{row.description}</span> },
+      { key: 'description', label: 'Interface Description', render: (row) => <span className="text-[12px] text-[#a1a1aa]">{row.description}</span> },
       { key: 'util_in_pct', label: 'Util In (%)', render: (row) => <span className="text-[12px] font-['JetBrains_Mono'] text-[#e4e4e7]">{row.util_in_pct.toFixed(1)}%</span> },
-      { key: 'util_in_rate', label: 'Util In (Rate)', render: (row) => <span className="text-[12px] font-['JetBrains_Mono'] text-[#0ea5e9] font-medium">{row.util_in_rate}</span> },
+      { key: 'util_in_rate', label: 'Util In (Rate)', render: (row) => <span className="text-[12px] font-['JetBrains_Mono'] text-[#1F7D53] font-medium">{row.util_in_rate}</span> },
       { key: 'util_out_pct', label: 'Util Out (%)', render: (row) => <span className="text-[12px] font-['JetBrains_Mono'] text-[#e4e4e7]">{row.util_out_pct.toFixed(1)}%</span> },
-      { key: 'util_out_rate', label: 'Util Out (Rate)', render: (row) => <span className="text-[12px] font-['JetBrains_Mono'] text-[#8b5cf6] font-medium">{row.util_out_rate}</span> },
-      { key: 'trend', label: 'Trend', render: (row) => <span className="text-[12px] font-['JetBrains_Mono'] font-medium" style={{ color: row.trend === 'up' ? '#00BC7D' : '#ff2056' }}>{row.percentage}</span> }
+      { key: 'util_out_rate', label: 'Util Out (Rate)', render: (row) => <span className="text-[12px] font-['JetBrains_Mono'] text-[#82ca9d] font-medium">{row.util_out_rate}</span> },
+      { key: 'trend', label: 'Trend', render: (row) => <span className="text-[12px] font-['JetBrains_Mono'] font-medium" style={{ color: row.trend === 'up' ? '#1F7D53' : '#ff3b30' }}>{row.percentage}</span> }
     ];
   } else if (type === 'latency') {
     columns = [

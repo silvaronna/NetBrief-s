@@ -5,15 +5,19 @@ export function LatencyCongestionWidget({ data }: { data: any[] }) {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-[#09090b] rounded-lg border border-[#27272a] shadow-lg flex flex-col hover:border-[rgba(43,127,255,0.3)] transition-colors">
-      <PanelHeader 
-        title="Latency & Congestion Watch" 
-        onDrillDown={() => navigate('/drilldown/latency')}
-      />
+    <div className="bg-[#27391C] rounded-xl border border-[#255F38] shadow-2xl flex flex-col hover:border-[#1F7D53] hover:shadow-[0_4px_25px_rgba(31,125,83,0.15)] transition-all duration-300 relative overflow-hidden group">
+      {/* Premium indicator top line */}
+      <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-transparent via-[#1F7D53]/60 to-transparent group-hover:via-[#1F7D53] transition-all duration-500" />
+      <div className="pt-1">
+        <PanelHeader 
+          title="Latency & Congestion Watch" 
+          onDrillDown={() => navigate('/drilldown/latency')}
+        />
+      </div>
       <div className="p-4">
         <table className="w-full text-left">
           <thead>
-            <tr className="border-b border-[#27272a] text-[#71717b] text-[10px] uppercase font-['Inter'] tracking-wider">
+            <tr className="border-b border-[#255F38] text-[#a1a1aa] text-[10px] uppercase font-['Inter'] tracking-wider">
               <th className="pb-3 px-2 font-medium">Link Name</th>
               <th className="pb-3 px-2 font-medium">Interface</th>
               <th className="pb-3 px-2 font-medium text-right">Current</th>
@@ -25,7 +29,7 @@ export function LatencyCongestionWidget({ data }: { data: any[] }) {
             {data.slice(0, 5).map((row) => (
               <tr 
                 key={row.id} 
-                className="border-b border-[rgba(39,39,42,0.3)] last:border-0 hover:bg-[rgba(24,24,27,0.4)] cursor-pointer transition-colors"
+                className="border-b border-[rgba(37,95,56,0.15)] last:border-0 hover:bg-[rgba(37,95,56,0.1)] cursor-pointer transition-colors"
                 onClick={() => navigate('/drilldown/latency')}
               >
                 <td className="py-3 px-2 text-[#d4d4d8] text-[13px] font-medium">{row.link}</td>

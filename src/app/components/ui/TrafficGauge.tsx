@@ -45,13 +45,13 @@ export function TrafficGauge({
         {/* Main gauge bar */}
         <Tooltip>
           <TooltipTrigger asChild>
-            <div className="relative w-full h-3 bg-gray-800 rounded-full overflow-hidden cursor-pointer">
+            <div className="relative w-full h-3 bg-[#18230F] border border-[#255F38]/30 rounded-full overflow-hidden cursor-pointer">
               {/* Background: full range from min to max (gray) */}
-              <div className="absolute inset-0 h-full bg-gray-700 rounded-full" />
+              <div className="absolute inset-0 h-full bg-[#27391C] rounded-full" />
               
               {/* Fill: current traffic within the range (colored) */}
               <div
-                className="absolute top-0 left-0 h-full bg-gradient-to-r from-orange-500 to-orange-600 rounded-full transition-all duration-300"
+                className="absolute top-0 left-0 h-full bg-gradient-to-r from-[#255F38] to-[#1F7D53] rounded-full transition-all duration-300 shadow-[0_0_8px_rgba(31,125,83,0.5)]"
                 style={{ width: `${calculations.fillPercentage}%` }}
                 aria-label={`Traffic gauge: current value is ${currentDisplay}`}
               />
@@ -63,7 +63,7 @@ export function TrafficGauge({
         </Tooltip>
 
         {/* Min and Max labels */}
-        <div className="flex justify-between text-xs text-gray-400">
+        <div className="flex justify-between text-[10px] font-['JetBrains_Mono'] text-[#a1a1aa]">
           <span title={`Minimum: ${minDisplay}`}>{minDisplay}</span>
           <span title={`Maximum: ${maxDisplay}`}>{maxDisplay}</span>
         </div>

@@ -9,11 +9,13 @@ export function PerformanceView() {
   const { latencyData, links3AData } = usePerformanceData();
 
   return (
-    <div className="flex flex-col gap-6 w-full animate-in fade-in duration-300">
-      <div className="grid grid-cols-1 gap-6">
+    <div className="flex flex-col gap-6 w-full">
+      <div className="animate-fade-in-left">
         {/* Render widget 3A Links menggunakan data yang benar */}
         <Traffic3ALinksWidget data={links3AData} />
-        
+      </div>
+      
+      <div className="animate-fade-in-right animation-delay-150">
         {/* Render widget Latency */}
         <LatencyCongestionWidget data={latencyData} />
       </div>
